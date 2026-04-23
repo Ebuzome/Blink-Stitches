@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Blink Stitches — Tailoring & Modern Ankara</title>
+  <!-- Font & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* -------------------- RESET & BASE (articulate measurements) -------------------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #fdfbf7;  /* soft cream base */
+      font-family: 'Inter', sans-serif;
+      color: #1e1e1e;
+      line-height: 1.6;
+    }
+
+    /* ultra‑precise spacing variables — every value intentional */
+    :root {
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-2xl: 40px;
+      --space-3xl: 48px;
+      --space-4xl: 64px;
+      --space-5xl: 80px;
+      --container-max: 1280px;
+      --border-radius-card: 6px;
+      --border-radius-img: 4px;
+      --transition: all 0.25s ease;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    h2 {
+      font-size: clamp(2.2rem, 6vw, 3.2rem);
+      margin-bottom: var(--space-sm);
+    }
+
+    /* -------------------- REUSABLE CONTAINER (precision padding) -------------------- */
+    .container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding-left: var(--space-2xl);   /* 40px side padding */
+      padding-right: var(--space-2xl);
+    }
+
+    /* header & footer use tighter vertical padding? no, but consistent */
+    .section {
+      padding-top: var(--space-5xl);    /* 80px */
+      padding-bottom: var(--space-5xl);
+    }
+
+    /* special sections spacing */
+    .section-sm {
+      padding-top: var(--space-3xl);
+      padding-bottom: var(--space-3xl);
+    }
+
+    /* -------------------- BUTTONS & LINKS -------------------- */
+    .btn {
+      display: inline-block;
+      background-color: transparent;
+      border: 1.5px solid #b76e2e;
+      color: #1e1e1e;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 12px 28px;           /* vertical 12px / horizontal 28px */
+      text-decoration: none;
+      border-radius: 40px;
+      transition: var(--transition);
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      background-color: #fff9f2;
+    }
+
+    .btn-primary {
+      background-color: #b76e2e;
+      color: #ffffff;
+      border: 1.5px solid #b76e2e;
+    }
+
+    .btn-primary:hover {
+      background-color: #9a551f;
+      border-color: #9a551f;
+    }
+
+    .btn-outline:hover {
+      background-color: #b76e2e;
+      color: white;
+    }
+
+    /* -------------------- HEADER / NAVIGATION (ultra precise spacing) -------------------- */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 24px;          /* exactly 24px */
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(183, 110, 46, 0.15);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #2c241a;
+    }
+    .logo span {
+      color: #b76e2e;
+      font-style: italic;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;                 /* precise 40px gap */
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #2c241a;
+      font-weight: 500;
+      font-size: 1.05rem;
+      padding: 8px 0;            /* vertical only for click area */
+      transition: var(--transition);
+      border-bottom: 2px solid transparent;
+    }
+    .nav-links a:hover {
+      border-bottom-color: #b76e2e;
+      color: #b76e2e;
+    }
+
+    /* -------------------- HERO SECTION (articulate padding & grid) -------------------- */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      align-items: center;
+      gap: var(--space-4xl);     /* 64px */
+      padding-top: var(--space-2xl);   /* 40px extra */
+      padding-bottom: var(--space-2xl);
+    }
+
+    .hero-content {
+      padding-right: var(--space-md); /* 16px breath */
+    }
+
+    .hero-badge {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #b76e2e;
+      margin-bottom: var(--space-sm);
+      font-weight: 500;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(3.2rem, 8vw, 4.8rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: var(--space-lg);
+    }
+
+    .hero-content p {
+      font-size: 1.15rem;
+      color: #3a352e;
+      margin-bottom: var(--space-xl);  /* 32px */
+      max-width: 90%;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: var(--space-lg);      /* 24px */
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    /* hero image grid — unsplash curated */
+    .hero-visual {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-lg);
+    }
+
+    .hero-img-card {
+      background: #d9cdc0;
+      border-radius: var(--border-radius-card);
+      overflow: hidden;
+      box-shadow: 0 18px 30px -8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .hero-img-card:first-child {
+      margin-top: var(--space-xl);  /* staggered look */
+    }
+    .hero-img-card:last-child {
+      margin-bottom: var(--space-xl);
+    }
+    .hero-img-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+      transition: var(--transition);
+    }
+    .hero-img-card:hover img {
+      transform: scale(1.02);
+    }
+
+    /* -------------------- FEATURED CATEGORIES / IMAGE CARDS -------------------- */
+    .section-title {
+      text-align: center;
+      margin-bottom: var(--space-2xl);  /* 40px */
+    }
+    .section-title p {
+      font-size: 1.2rem;
+      color: #5e5346;
+      max-width: 600px;
+      margin: var(--space-sm) auto 0;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;                 /* 30px precise gap */
+    }
+
+    .style-card {
+      background: #ffffff;
+      border-radius: var(--border-radius-card);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
+      transition: var(--transition);
+      padding: 0 0 var(--space-lg) 0;   /* bottom padding 24px */
+      border: 1px solid #f0e8df;
+    }
+
+    .card-img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+      border-radius: var(--border-radius-img) var(--border-radius-img) 0 0;
+    }
+
+    .card-content {
+      padding: var(--space-lg) var(--space-lg) var(--space-sm); /* 24px 24px 8px */
+    }
+
+    .card-content h3 {
+      font-size: 1.8rem;
+      margin-bottom: var(--space-xs);
+    }
+
+    .card-content p {
+      color: #5f554a;
+      margin-bottom: var(--space-md);
+      font-size: 0.95rem;
+    }
+
+    .card-link {
+      text-decoration: none;
+      font-weight: 600;
+      color: #b76e2e;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 0;
+    }
+
+    /* -------------------- BESPOKE PROCESS / ABOUT TAILORING SECTION -------------------- */
+    .process-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4xl);
+      align-items: center;
+    }
+
+    .process-img {
+      border-radius: var(--border-radius-card);
+      overflow: hidden;
+      box-shadow: 0 20px 30px -6px rgba(0,0,0,0.08);
+    }
+
+    .process-img img {
+      width: 100%;
+      height: 440px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .process-text {
+      padding-left: var(--space-md);
+    }
+
+    .process-text h2 {
+      margin-bottom: var(--space-md);
+    }
+    .process-text .lead {
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: var(--space-lg);
+      color: #3e362e;
+    }
+    .feature-list {
+      list-style: none;
+      margin-top: var(--space-xl);
+    }
+    .feature-list li {
+      display: flex;
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+      align-items: flex-start;
+    }
+    .feature-list i {
+      color: #b76e2e;
+      font-size: 1.3rem;
+      margin-top: 4px;
+      width: 24px;
+    }
+
+    /* -------------------- GALLERY / ANKARA DESIGNS -------------------- */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-lg);       /* 24px */
+    }
+
+    .gallery-item {
+      border-radius: var(--border-radius-card);
+      overflow: hidden;
+      background: #e3d9cf;
+      aspect-ratio: 3/4;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.04);
+    }
+
+    /* -------------------- TESTIMONIAL / CTA BAND -------------------- */
+    .cta-band {
+      background: #f4ede5;
+      border-radius: 12px;
+      padding: var(--space-3xl) var(--space-4xl);
+      margin-top: var(--space-xl);
+      text-align: center;
+    }
+    .cta-band h3 {
+      font-size: 2.2rem;
+      margin-bottom: var(--space-md);
+    }
+
+    /* -------------------- FOOTER -------------------- */
+    .footer {
+      background: #1e1b17;
+      color: #dbd2c7;
+      padding: var(--space-3xl) 0 var(--space-lg);
+      margin-top: var(--space-4xl);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.2fr;
+      gap: var(--space-2xl);
+    }
+    .footer-brand h3 {
+      font-size: 2rem;
+      color: #e7d9cd;
+      margin-bottom: var(--space-md);
+    }
+    .footer-links h4 {
+      color: #fff;
+      margin-bottom: var(--space-lg);
+      font-size: 1.3rem;
+    }
+    .footer-links ul {
+      list-style: none;
+    }
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+    .footer-links a {
+      text-decoration: none;
+      color: #bfb2a4;
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+    .footer-links a:hover {
+      color: #b76e2e;
+    }
+    .copyright {
+      border-top: 1px solid #3f3830;
+      margin-top: var(--space-2xl);
+      padding-top: var(--space-xl);
+      text-align: center;
+      font-size: 0.9rem;
+      color: #9e9184;
+    }
+
+    /* -------------------- MOBILE RESPONSIVENESS — ultra precise media queries -------------------- */
+    @media (max-width: 1024px) {
+      .container {
+        padding-left: var(--space-xl);
+        padding-right: var(--space-xl);
+      }
+      .hero {
+        gap: var(--space-xl);
+      }
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 800px) {
+      :root {
+        --space-5xl: 64px;
+        --space-4xl: 48px;
+      }
+      .navbar {
+        flex-direction: column;
+        gap: 16px;
+      }
+      .nav-links {
+        gap: 28px;
+      }
+      .hero {
+        grid-template-columns: 1fr;
+        gap: var(--space-2xl);
+      }
+      .hero-content p {
+        max-width: 100%;
+      }
+      .hero-visual {
+        grid-template-columns: 1fr 1fr;
+      }
+      .card-grid, .process-grid, .footer-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-2xl);
+      }
+      .process-img img {
+        height: 320px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding-left: 20px;      /* precise 20px */
+        padding-right: 20px;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 18px;
+      }
+      .hero-cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .hero-img-card img {
+        height: 200px;
+      }
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      .cta-band {
+        padding: var(--space-xl) var(--space-lg);
+      }
+    }
+
+    /* extra spacing touches */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, #d4c5b6, transparent);
+      margin: var(--space-2xl) 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container navbar">
+      <div class="logo">Blink <span>Stitches</span></div>
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Collection</a>
+        <a href="#">Bespoke</a>
+        <a href="#">Atelier</a>
+        <a href="#" class="btn btn-outline" style="padding: 8px 22px;">Book fitting</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO — refined padding and image grid -->
+    <section class="container hero">
+      <div class="hero-content">
+        <div class="hero-badge">✦ Lagos · Nairobi · Accra</div>
+        <h1>Where Ankara meets<br>modern tailoring</h1>
+        <p>Impeccably crafted custom pieces blending vibrant African wax prints with contemporary female silhouettes. Every seam is a statement.</p>
+        <div class="hero-cta">
+          <a href="#" class="btn btn-primary">Explore lookbook</a>
+          <a href="#" class="btn btn-outline">Virtual consultation</a>
+        </div>
+        <div style="margin-top: 40px; display: flex; gap: 32px;">
+          <div><strong style="font-size: 1.8rem; font-family: 'Cormorant Garamond';">12+</strong><br><span style="color: #5a4e43;">years of stitch</span></div>
+          <div><strong style="font-size: 1.8rem; font-family: 'Cormorant Garamond';">100%</strong><br><span style="color: #5a4e43;">custom fit</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <!-- Unsplash images: African Ankara & modern female wears -->
+        <div class="hero-img-card">
+          <img src="https://images.unsplash.com/photo-1611930022070-9d9b2d2b1f8e?q=80&w=800&auto=format&fit=crop" alt="African woman in modern Ankara blazer" loading="eager">
+        </div>
+        <div class="hero-img-card">
+          <img src="https://images.unsplash.com/photo-1601373879103-6ef9d5f2c5f0?q=80&w=800&auto=format&fit=crop" alt="Tailored female suit with African print" loading="eager">
+        </div>
+        <div class="hero-img-card">
+          <img src="https://images.unsplash.com/photo-1585914924625-3c4f1a8d7f1e?q=80&w=800&auto=format&fit=crop" alt="Ankara dress contemporary" loading="eager">
+        </div>
+        <div class="hero-img-card">
+          <img src="https://images.unsplash.com/photo-1591369822094-1b8d3d0f5b7b?q=80&w=800&auto=format&fit=crop" alt="Woman in African wax print co-ord" loading="eager">
+        </div>
+      </div>
+    </section>
+
+    <!-- COLLECTIONS / ANKARA & MODERN WEAR (images from Unsplash) -->
+    <section class="container section">
+      <div class="section-title">
+        <h2>Modern Ankara · Feminine Tailoring</h2>
+        <p>Discover signature pieces that marry heritage textiles with precision cuts. Unsplash curation: African prints & contemporary style.</p>
+      </div>
+      <div class="card-grid">
+        <div class="style-card">
+          <img class="card-img" src="https://images.unsplash.com/photo-1567532939604-b6b5b0db26c4?q=80&w=800&auto=format&fit=crop" alt="Ankara midi dress">
+          <div class="card-content">
+            <h3>The Adire Midi</h3>
+            <p>Hand-finished Ankara with structured bodice, ideal for brunch or boardroom.</p>
+            <a href="#" class="card-link">View details <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="style-card">
+          <img class="card-img" src="https://images.unsplash.com/photo-1603400521630-9f2de124b33c?q=80&w=800&auto=format&fit=crop" alt="Blazer & trousers set">
+          <div class="card-content">
+            <h3>Power Suit</h3>
+            <p>Double-breasted blazer with geometric Kente lining, tapered trousers.</p>
+            <a href="#" class="card-link">View details <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="style-card">
+          <img class="card-img" src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?q=80&w=800&auto=format&fit=crop" alt="Modern Ankara gown">
+          <div class="card-content">
+            <h3>Owambe Maxi</h3>
+            <p>Flowing Ankara gown with structured waist, for celebrations & galas.</p>
+            <a href="#" class="card-link">View details <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BESPOKE PROCESS / PRECISION TAILORING -->
+    <section class="container section-sm">
+      <div class="process-grid">
+        <div class="process-img">
+          <img src="https://images.unsplash.com/photo-1595341888016-a392ef81b2c2?q=80&w=1000&auto=format&fit=crop" alt="Tailor measuring fabric">
+        </div>
+        <div class="process-text">
+          <h2>Articulate tailoring,<br>uncompromising fit</h2>
+          <p class="lead">Blink Stitches combines old‑world craftsmanship with the boldness of African textiles. Each garment is drafted to your unique measurements.</p>
+          <ul class="feature-list">
+            <li><i class="fas fa-ruler-combined"></i> <div><strong>Precision measurements</strong><br>3D body mapping for zero‑gap fit</div></li>
+            <li><i class="fas fa-palette"></i> <div><strong>Curated Ankara library</strong><br>Exclusive wax prints & hand‑dyed Adire</div></li>
+            <li><i class="fas fa-cut"></i> <div><strong>Hand‑finished details</strong><br>French seams, pick‑stitching, functional cuffs</div></li>
+          </ul>
+          <a href="#" class="btn btn-primary" style="margin-top: 24px;">Book a fitting</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY — more unsplash images of female modern wears and Ankara -->
+    <section class="container section">
+      <div class="section-title">
+        <h2>Recent stitches</h2>
+        <p>From our atelier: each look is custom-made, featuring African wax prints and elegant lines.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?q=80&w=800&auto=format&fit=crop" alt="African print dress"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1604004555489-723a93d6ce74?q=80&w=800&auto=format&fit=crop" alt="Modern Ankara skirt"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?q=80&w=800&auto=format&fit=crop" alt="Female tailoring"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=800&auto=format&fit=crop" alt="Ankara blazer"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1583744946564-b52ac1c8746a?q=80&w=800&auto=format&fit=crop" alt="Contemporary kente"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1611042553365-9b69f3d72e9c?q=80&w=800&auto=format&fit=crop" alt="woman in tailored suit"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1604176354204-9268737828e6?q=80&w=800&auto=format&fit=crop" alt="female model Ankara"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1593030103066-0093718efeb2?q=80&w=800&auto=format&fit=crop" alt="african print fashion"></div>
+      </div>
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="#" class="btn btn-outline">See full portfolio <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></a>
+      </div>
+    </section>
+
+    <!-- CTA / TESTIMONIAL BAND (precision padding) -->
+    <div class="container">
+      <div class="cta-band">
+        <h3>“Every piece fits like a second skin”</h3>
+        <p style="margin-bottom: 24px; font-size: 1.2rem;">— Adaeze, Lagos · Blink Stitches client since 2019</p>
+        <a href="#" class="btn btn-primary" style="background: #1e1b17; border-color:#1e1b17;">Request swatch kit</a>
+        <p style="margin-top: 20px; font-size: 0.95rem;">Complimentary consultation & fabric samples</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <h3>Blink Stitches</h3>
+        <p style="margin-bottom: 24px;">Tailoring house specialized in African print womenswear. Every measurement matters.</p>
+        <div style="display: flex; gap: 20px;">
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-pinterest"></i>
+          <i class="fab fa-x-twitter"></i>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#">New arrivals</a></li>
+          <li><a href="#">Ankara collection</a></li>
+          <li><a href="#">Bespoke suiting</a></li>
+          <li><a href="#">Lookbook</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Atelier</h4>
+        <ul>
+          <li><a href="#">Our process</a></li>
+          <li><a href="#">Fabric care</a></li>
+          <li><a href="#">Virtual fitting</a></li>
+          <li><a href="#">Stores</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Contact</h4>
+        <ul>
+          <li>Lekki Phase 1, Lagos</li>
+          <li>hello@blinkstitches.ng</li>
+          <li>+234 201 334 887</li>
+          <li>Mon–Sat · 9am–6pm</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container copyright">
+      <p>© 2026 Blink Stitches — Precision tailoring, African heritage. Images via Unsplash (Ankara & modern female fashion).</p>
+    </div>
+  </footer>
+</body>
+</html>
